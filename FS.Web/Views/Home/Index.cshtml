@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Upload Data";
+}
+
+<h2>Upload Data</h2>
+
+@using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @Html.TextBox("file", "", new { type = "file" }) <br />
+        @Html.TextBox("reportToDate", "", new {type = "date"})<br/>
+        <input type="submit" value="Upload" />
+    </div>
+} 

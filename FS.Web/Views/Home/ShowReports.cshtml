@@ -1,0 +1,59 @@
+﻿@using System.Data
+@model FS.Business.ReportManager
+
+@{
+    ViewBag.Title = "Reports";
+}
+
+<h2>Reports</h2>
+<text>Report To Date is: @Model.ReportToDate.ToShortDateString()</text>
+@foreach (var report in Model.Reports.FindAll(r => r.Result != null))
+{
+    <h4>@report.Result.TableName</h4>
+
+    <table border="1">
+        <thead>
+        <tr>
+            @foreach (DataColumn col in report.Result.Columns)
+            {
+                <th>@col.ColumnName</th>
+            }
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (DataRow dr in report.Result.Rows)
+        {
+            <tr>
+                @foreach (var cell in dr.ItemArray)
+                {
+                    <td>@cell.ToString()</td>
+                }
+            </tr>
+        }
+        </tbody>
+    </table>
+    <br/>
+}
+
+@if (Model.Errors.Count > 0)
+{
+    <h2>Parsing errors</h2>
+    <text>Following lines caused errors and weren't included in any reports</text>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Data line</th>
+                <th>Error</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var error in Model.Errors)
+        {
+            <tr>
+                <td>@error.TransactionLine</td>
+                <td>@error.ExceptionThrown.Message</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
