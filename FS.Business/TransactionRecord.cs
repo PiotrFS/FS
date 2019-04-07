@@ -7,7 +7,7 @@ namespace FS.Business
     /// <summary>
     /// Represents data for a single transaction
     /// </summary>
-    public class TxnRecord
+    public class TransactionRecord
     {
         /// <summary>
         /// Reg ex used to split CSV transaction record
@@ -43,7 +43,7 @@ namespace FS.Business
 
         public bool IsBuy => Type.Equals("BUY");
 
-        public TxnRecord(string data)
+        public TransactionRecord(string data)
         {
             var cols = SplitCsv(data);
             Date = DateTime.Parse(cols[(int) Columns.Date]);

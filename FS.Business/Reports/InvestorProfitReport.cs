@@ -16,7 +16,7 @@ namespace FS.Business.Reports
         /// For each Investor and Fund, return net profit or loss on investment.
         /// </summary>
         /// <param name="data">Transaction data</param>
-        public override void Generate(List<TxnRecord> data)
+        public override void Generate(List<TransactionRecord> data)
         {
             Result = new DataTable(this.GetType().Name);
             Result.Columns.Add(new DataColumn(COL_INVESTOR));

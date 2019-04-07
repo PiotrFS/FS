@@ -15,7 +15,7 @@ namespace FS.Business.Reports
         /// For each Sales Rep, generate a summary of the net amount held by investors across all funds.
         /// </summary>
         /// <param name="data">Transaction data</param>
-        public override void Generate(List<TxnRecord> data)
+        public override void Generate(List<TransactionRecord> data)
         {
             Result = new DataTable(this.GetType().Name);
             Result.Columns.Add(new DataColumn(COL_SALES_REP));
@@ -37,7 +37,7 @@ namespace FS.Business.Reports
         /// <param name="data">Transaction data</param>
         /// <param name="salesRep">Sales rep</param>
         /// <returns></returns>
-        private static decimal GetNetAmount(List<TxnRecord> data, string salesRep)
+        private static decimal GetNetAmount(List<TransactionRecord> data, string salesRep)
         {
             var transactions = data.FindAll(d => d.SalesRep.Equals(salesRep));
             decimal total = 0;

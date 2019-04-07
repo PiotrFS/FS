@@ -25,7 +25,7 @@ namespace FS.Business.Reports
         /// Date, and Inception to Date summary of cash amounts sold across all funds.
         /// </summary>
         /// <param name="data">Transaction data</param>
-        public override void Generate(List<TxnRecord> data)
+        public override void Generate(List<TransactionRecord> data)
         {
             Result = new DataTable(this.GetType().Name);
             Result.Columns.Add(new DataColumn(COL_SALES_REP));
@@ -58,7 +58,7 @@ namespace FS.Business.Reports
         /// <param name="salesRep">Sales rep</param>
         /// <param name="startDate">Start date for transactions</param>
         /// <returns></returns>
-        private decimal GetTotalSales(List<TxnRecord> data, string salesRep, DateTime startDate)
+        private decimal GetTotalSales(List<TransactionRecord> data, string salesRep, DateTime startDate)
         {
             var toDateSales = data.FindAll(d =>
                 d.SalesRep.Equals(salesRep)

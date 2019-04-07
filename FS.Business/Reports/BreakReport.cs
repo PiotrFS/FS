@@ -18,7 +18,7 @@ namespace FS.Business.Reports
         /// negative share balance) by investor.
         /// </summary>
         /// <param name="data">Transaction data</param>
-        public override void Generate(List<TxnRecord> data)
+        public override void Generate(List<TransactionRecord> data)
         {
             Result = new DataTable(this.GetType().Name);
             Result.Columns.Add(new DataColumn(COL_INVESTOR));

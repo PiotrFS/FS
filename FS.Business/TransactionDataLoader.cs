@@ -9,7 +9,7 @@ namespace FS.Business
     /// </summary>
     public class TransactionDataLoader
     {
-        public List<TxnRecord> Data { get; set; }
+        public List<TransactionRecord> Data { get; set; }
         public List<ParsingError> LoadData(Stream data)
         {
             var errors = new List<ParsingError>();
@@ -21,13 +21,13 @@ namespace FS.Business
 
                 if (lines.Length <= 1) return errors;
 
-                Data = new List<TxnRecord>();
+                Data = new List<TransactionRecord>();
                 // first line contains header so skip it and start with line 2
                 for (var i = 1; i < lines.Length; i++)
                 {
                     try
                     {
-                        Data.Add(new TxnRecord(lines[i]));
+                        Data.Add(new TransactionRecord(lines[i]));
                     }
                     catch (Exception ex)
                     {

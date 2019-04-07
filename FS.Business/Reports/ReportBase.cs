@@ -13,6 +13,6 @@ namespace FS.Business.Reports
         /// Method that will generate report results based on the data provided
         /// </summary>
         /// <param name="data">Transaction data</param>
-        public abstract void Generate(List<TxnRecord> data);
+        public abstract void Generate(List<TransactionRecord> data);
     }
 }
