@@ -64,14 +64,14 @@ namespace FS.Business.Reports
                 d.SalesRep.Equals(salesRep)
                 && d.Date >= startDate
                 && d.Date <= _reportToDate
-                && d.Type.Equals("SELL"));
-            double total = 0;
+                && !d.IsBuy);
+            decimal total = 0;
             foreach (var sale in toDateSales)
             {
-                total += sale.Shares * (double) sale.Price;
+                total += sale.Cost;
             }
 
-            return (decimal) total;
+            return total;
         }
         /// <summary>
         /// Finds quarter start date based on date provided

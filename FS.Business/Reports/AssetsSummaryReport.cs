@@ -40,16 +40,14 @@ namespace FS.Business.Reports
         private static decimal GetNetAmount(List<TxnRecord> data, string salesRep)
         {
             var transactions = data.FindAll(d => d.SalesRep.Equals(salesRep));
-            double total = 0;
+            decimal total = 0;
             foreach (var transaction in transactions)
             {
-                if (transaction.IsBuy)
-                    total += transaction.Shares * (double)transaction.Price;
-                else
-                    total -= transaction.Shares * (double) transaction.Price;
+                // subtracting the cost of transaction because if it's a BUY cost will be negative but that means positive number in terms of assets held.
+                total -= transaction.Cost;
             }
 
-            return (decimal)total;
+            return total;
         }
     }
 }
